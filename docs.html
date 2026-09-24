@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#fbf9f5">
+  <meta name="description" content="The PCHI 2.0 guide to verified scene state, PIR invariants, Only-Lang governance, and creative tool integrations.">
+  <title>Documentation — PCHI 2.0</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;450;500;550;600;650;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./docs.css">
+</head>
+<body class="docs-page">
+  <svg class="svg-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="i-peach" viewBox="0 0 40 40">
+      <path d="M21 11C15 5 5 11 5 21c0 9 9 15 15 15s15-7 15-16c0-10-9-14-14-9Z" fill="#ed9972" stroke="currentColor" stroke-width="1.6"/>
+      <path d="M20 11c4 5 4 15 0 22M21 10c0-4 3-7 5-8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      <path d="M20 10C13 11 8 6 9 3c6-1 10 2 11 7Z" fill="#869365" stroke="currentColor" stroke-width="1.4"/>
+    </symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>
+    <symbol id="i-up-right" viewBox="0 0 24 24"><path d="M6 18 18 6M6 6h12v12"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="i-github" viewBox="0 0 24 24"><path d="M9 19c-4 1-4-2-6-2m12 5v-4c0-1 .1-2-.7-2.7 3-.3 5.7-1.4 5.7-6.1a4.8 4.8 0 0 0-1.3-3.4c.1-.3.6-1.7-.1-3.4 0 0-1.1-.4-3.6 1.3a13 13 0 0 0-6 0C6.5 2 5.4 2.4 5.4 2.4c-.7 1.7-.2 3.1-.1 3.4A4.8 4.8 0 0 0 4 9.2c0 4.7 2.7 5.8 5.7 6.1C9 16 9 17 9 18v4"/></symbol>
+  </svg>
+
+  <a class="skip-link" href="#documentation">Skip to documentation</a>
+  <header class="docs-header">
+    <div class="docs-header-inner">
+      <div class="docs-brand-group">
+        <a class="brand" href="./index.html" aria-label="PCHI home"><svg class="brand-peach"><use href="#i-peach"/></svg><span>pchi<span class="brand-dot">.</span></span><span class="version">2.0</span></a>
+        <span class="docs-header-label">Documentation</span>
+      </div>
+      <button class="docs-search-launch" id="open-search" aria-label="Search documentation">
+        <svg class="icon small"><use href="#i-search"/></svg><span>Find your way around…</span><kbd>⌘ K</kbd>
+      </button>
+      <nav class="docs-top-nav" aria-label="Main navigation">
+        <a href="./index.html" class="docs-home-link">Home</a>
+        <a href="./index.html#projects" class="docs-tools-link">Tools &amp; downloads</a>
+        <a class="docs-repo-link" href="https://github.com/vdmo/pchi/" target="_blank" rel="noopener noreferrer"><svg class="icon small"><use href="#i-github"/></svg><span>GitHub</span><svg class="icon small external"><use href="#i-up-right"/></svg></a>
+      </nav>
+    </div>
+    <div class="reading-progress" aria-hidden="true"><span id="reading-progress"></span></div>
+  </header>
+
+  <div class="docs-layout">
+    <aside class="docs-sidebar">
+      <div class="sidebar-heading"><span class="status-dot"></span> THE PCHI FIELD GUIDE <span>02</span></div>
+      <nav aria-label="Documentation chapters">
+        <div class="docs-nav-group"><h2><span>01</span> Getting started</h2>
+          <a href="#introduction" class="sidebar-link active" aria-current="location">Introduction</a>
+          <a href="#why-pchi" class="sidebar-link">Why PCHI?</a>
+        </div>
+        <div class="docs-nav-group"><h2><span>02</span> Core concepts</h2>
+          <a href="#pir-invariants" class="sidebar-link">PIR Invariants</a>
+          <a href="#only-lang" class="sidebar-link">Only-Lang Governance</a>
+          <a href="#message-schema" class="sidebar-link">Message Schema</a>
+        </div>
+        <div class="docs-nav-group"><h2><span>03</span> Architecture</h2>
+          <a href="#conductor" class="sidebar-link">PCHI Conductor</a>
+          <a href="#integration-patterns" class="sidebar-link">Integration Patterns</a>
+        </div>
+        <div class="docs-nav-group"><h2><span>04</span> Tool integrations</h2>
+          <a href="#resolume" class="sidebar-link"><i class="nav-dot lilac-dot"></i>Resolume Bridge</a>
+          <a href="#touchdesigner" class="sidebar-link"><i class="nav-dot blue-dot"></i>TouchDesigner CHOP</a>
+          <a href="#ableton" class="sidebar-link"><i class="nav-dot sage-dot"></i>Ableton Max Device</a>
+        </div>
+      </nav>
+      <div class="sidebar-bottom">
+        <svg class="brand-peach"><use href="#i-peach"/></svg>
+        <p>A little more certainty.<br>A lot more creative freedom.</p>
+        <a href="https://github.com/vdmo/pchi/" target="_blank" rel="noopener noreferrer">Explore the source <span>↗</span></a>
+      </div>
+    </aside>
+
+    <div class="mobile-chapter-picker">
+      <label for="chapter-select">IN THIS GUIDE</label>
+      <select id="chapter-select" aria-label="Jump to a documentation chapter">
+        <option value="introduction">Introduction</option><option value="why-pchi">Why PCHI?</option>
+        <option value="pir-invariants">PIR Invariants</option><option value="only-lang">Only-Lang Governance</option>
+        <option value="message-schema">Message Schema</option><option value="conductor">PCHI Conductor</option>
+        <option value="integration-patterns">Integration Patterns</option><option value="resolume">Resolume Bridge</option>
+        <option value="touchdesigner">TouchDesigner CHOP</option><option value="ableton">Ableton Max Device</option>
+      </select>
+    </div>
+
+    <main class="docs-main" id="documentation">
+      <div class="docs-breadcrumb"><a href="./index.html">PCHI</a><span>/</span><span>Documentation</span><span>/</span><strong>Overview</strong></div>
+
+      <section class="doc-section introduction" id="introduction" data-title="Introduction" data-group="Getting started">
+        <div class="doc-kicker"><span>THE PROTOCOL, EXPLAINED</span><span class="doc-version">VERSION 2.0</span></div>
+        <h1>PCHI 2.0<br><em>Protocol documentation.</em></h1>
+        <p class="doc-lead">A shared language for live creative systems. Mathematical grounding for everything you make.</p>
+        <p>PCHI (Peachy) v2.0 is a scene state protocol with embedded PIR (Prime Integer Relations) mathematical invariants, bringing coordination, verification, and intelligence to live creative software.</p>
+        <div class="docs-welcome">
+          <div><span class="eyebrow">MANY TOOLS. ONE TRUTH.</span><h2>Your creative stack,<br>in a shared state of mind.</h2><a href="#conductor">Meet the Conductor <svg class="icon small"><use href="#i-arrow"/></svg></a></div>
+          <svg class="welcome-network" viewBox="0 0 220 170" role="img" aria-label="Creative tools connected to a central PCHI conductor">
+            <g fill="none" stroke="#af8a6f" stroke-width="1"><circle cx="110" cy="85" r="67" opacity=".25"/><circle cx="110" cy="85" r="44" opacity=".2"/><path d="M110 85 46 39M110 85l63-37M110 85l51 55M110 85l-66 47" stroke-dasharray="3 5" opacity=".7"/></g>
+            <g fill="#faf3e7" stroke="#d2b9a0"><rect x="28" y="22" width="34" height="34" rx="9" transform="rotate(-10 45 39)"/><rect x="157" y="31" width="34" height="34" rx="9" transform="rotate(9 174 48)"/><rect x="143" y="124" width="34" height="34" rx="9" transform="rotate(-9 160 141)"/><rect x="27" y="114" width="34" height="34" rx="9" transform="rotate(10 44 131)"/><circle cx="110" cy="85" r="29"/></g>
+            <g fill="#8b745b" font-family="monospace" font-size="15" text-anchor="middle"><text x="45" y="44">{ }</text><text x="174" y="53">∿</text><text x="160" y="146">⌘</text><text x="44" y="136">↗</text></g>
+            <use href="#i-peach" x="90" y="64" width="40" height="40"/>
+          </svg>
+        </div>
+        <div class="doc-meta"><span><i class="status-dot"></i> Open source protocol</span><span>JSON + FlatBuffers</span><span>Transport agnostic</span></div>
+      </section>
+
+      <section class="doc-section" id="why-pchi" data-title="Why PCHI?" data-group="Getting started">
+        <div class="doc-section-label">01 / THE BIG PICTURE</div>
+        <h2>Why PCHI?<a class="heading-anchor" href="#why-pchi" aria-label="Link to Why PCHI">#</a></h2>
+        <p>Live shows can involve 10+ tools—Resolume, TouchDesigner, Ableton, lighting consoles, and tracking systems—connected through dozens of custom OSC mappings. Scene coherence is maintained by convention. When something breaks, it can be difficult to know which state is valid.</p>
+        <p>PCHI standardizes the “letter”—the message schema—while remaining transport-agnostic. It adds explicit mathematical checks, so state verification becomes part of the protocol rather than an assumption.</p>
+        <div class="doc-comparison">
+          <article><span class="comparison-icon">↯</span><h3>The spiderweb problem</h3><p>Separate mappings. Separate parsers. Silent failures between tools that are meant to work together.</p><small>CONVENTION-BASED</small></article>
+          <article class="comparison-solution"><span class="comparison-icon">◎</span><h3>The PCHI approach</h3><p>A unified schema and a central Conductor. Every proposed update passes through the same validation process.</p><small>MATHEMATICS-BASED</small></article>
+        </div>
+      </section>
+
+      <section class="doc-section" id="pir-invariants" data-title="PIR Invariants" data-group="Core concepts">
+        <div class="doc-section-label">02 / CORE CONCEPTS</div>
+        <h2>PIR Invariants<a class="heading-anchor" href="#pir-invariants" aria-label="Link to PIR Invariants">#</a></h2>
+        <p>Every PCHI message carries invariant data describing its mathematical state. Before a change is applied, the Conductor checks these values against its configured validation criteria.</p>
+        <dl class="invariant-list">
+          <div><dt><span>01</span> Equilibrium check</dt><dd>Uses the Prouhet–Thue–Morse sign sequence to test mathematical balance through a computed residual.</dd></div>
+          <div><dt><span>02</span> Coherence gap</dt><dd>Measures deviation from the mean to help detect state drift.</dd></div>
+          <div><dt><span>03</span> Curvature signature</dt><dd>Approximates second-derivative behavior to describe smoothness during transitions.</dd></div>
+        </dl>
+        <div class="doc-code">
+          <div class="doc-code-bar"><span><i class="file-dot"></i> PIR invariant payload</span><div><span>JSON</span><button data-copy-block aria-label="Copy invariant example"><svg class="icon small"><use href="#i-copy"/></svg><span>Copy</span></button></div></div>
+          <pre><code data-language="json">{
+  "pirInvariants": {
+    "equilibriumCheck": {
+      "residual": 0.000000000001,
+      "precision": 1e-12,
+      "signSequence": [1, -1, -1, 1]
+    },
+    "coherenceGap": 0.0234,
+    "curvatureSignature": "0.001234, -0.000567, 0.000890",
+    "residual": 0.000000000001
+  }
+}</code></pre>
+          <div class="doc-code-note"><span>ILLUSTRATIVE PAYLOAD</span><span>ε = 10⁻¹²</span></div>
+        </div>
+        <aside class="docs-callout"><span class="callout-symbol">i</span><div><strong>A schema is not a proof.</strong><p>Structural validation and invariant verification are different steps. Recompute or verify the invariant values against the actual state; do not trust a sender’s reported residual alone.</p></div></aside>
+      </section>
+
+      <section class="doc-section" id="only-lang" data-title="Only-Lang Governance" data-group="Core concepts">
+        <span class="doc-chip sage-chip">CREATIVE FREEDOM, CLEAR BOUNDARIES</span>
+        <h2>Only-Lang Governance<a class="heading-anchor" href="#only-lang" aria-label="Link to Only-Lang Governance">#</a></h2>
+        <p>Generative agents can introduce unexpected changes into a live environment. Only-Lang rules define explicit boundaries for those behaviors, allowing the Conductor to clamp or reject a proposed update before it reaches receivers.</p>
+        <div class="doc-code">
+          <div class="doc-code-bar"><span><i class="file-dot sage-dot"></i> A little less wobble.</span><div><span>RULE EXAMPLE</span><button data-copy-block aria-label="Copy governance rule"><svg class="icon small"><use href="#i-copy"/></svg><span>Copy</span></button></div></div>
+          <pre><code data-language="lua">if kraken_tentacle.wobbliness > 0.8
+then
+    kraken_tentacle.wobbliness = 0.8
+end</code></pre>
+        </div>
+        <p>Here, the maximum permitted wobbliness is <code>0.8</code>. Suggestions within that boundary can pass; values outside it are constrained by the rule.</p>
+        <p class="doc-small">Software governance is one layer of protection—not a substitute for show-specific safety limits, hardware interlocks, or operator oversight.</p>
+      </section>
+
+      <section class="doc-section" id="message-schema" data-title="Message Schema" data-group="Core concepts">
+        <h2>Message Schema<a class="heading-anchor" href="#message-schema" aria-label="Link to Message Schema">#</a></h2>
+        <p>A common message format carries object state, control parameters, musical context, and tracking data. JSON keeps messages readable; FlatBuffers supports high-performance binary serialization.</p>
+        <div class="doc-table-wrap"><table class="message-table"><thead><tr><th>Message type</th><th>What it carries</th></tr></thead><tbody>
+          <tr><td><code>scene_update</code></td><td>Object transforms (x, y, z) and custom scene data.</td></tr>
+          <tr><td><code>control_parameter</code></td><td>Targeted changes such as opacity or playback speed.</td></tr>
+          <tr><td><code>musical_context</code></td><td>BPM, beat count, kick/snare events, and song sections.</td></tr>
+          <tr><td><code>artist_tracking</code></td><td>Real-time position and velocity tracking.</td></tr>
+          <tr><td><code>heartbeat</code></td><td>Connection monitoring and system health.</td></tr>
+        </tbody></table></div>
+        <details class="payload-details">
+          <summary><span><span class="file-braces">{ }</span> Explore a complete state payload</span><span class="details-plus" aria-hidden="true">+</span></summary>
+          <div class="doc-code">
+            <div class="doc-code-bar"><span>Overview payload</span><div><span>JSON</span><button data-copy-block aria-label="Copy complete payload"><svg class="icon small"><use href="#i-copy"/></svg><span>Copy</span></button></div></div>
+            <pre><code data-example="payload" data-language="json"></code></pre>
+          </div>
+        </details>
+        <p class="doc-small">The overview example uses a <code>state_update</code> envelope. Check the repository’s versioned schema for the exact message types and fields your implementation supports.</p>
+        <a class="doc-inline-link" href="https://github.com/vdmo/pchi/tree/main/pchi-schema" target="_blank" rel="noopener noreferrer">Browse protocol schemas <svg class="icon small"><use href="#i-up-right"/></svg></a>
+      </section>
+
+      <section class="doc-section" id="conductor" data-title="PCHI Conductor" data-group="Architecture">
+        <div class="doc-section-label">03 / ARCHITECTURE</div>
+        <h2>Meet the Conductor<a class="heading-anchor" href="#conductor" aria-label="Link to PCHI Conductor">#</a></h2>
+        <p>The <strong>PrimeSwarm Engine</strong> acts as the PCHI Conductor: a central Rust-based server that receives proposed changes, verifies them, and distributes a coherent state to connected tools.</p>
+        <ol class="conductor-flow">
+          <li><span>01</span><strong>Receive</strong><small>Incoming state</small></li>
+          <li><span>02</span><strong>Verify</strong><small>PIR invariants</small></li>
+          <li><span>03</span><strong>Govern</strong><small>Only-Lang rules</small></li>
+          <li><span>04</span><strong>Broadcast</strong><small>Verified updates</small></li>
+        </ol>
+        <h3>Start with the source</h3>
+        <p>Install Git and the Rust toolchain, then clone the repository. Consult its README for current prerequisites and configuration.</p>
+        <div class="doc-code">
+          <div class="doc-code-bar"><span><i class="file-dot"></i> Your terminal</span><div><span>SHELL</span><button data-copy-block aria-label="Copy setup commands"><svg class="icon small"><use href="#i-copy"/></svg><span>Copy</span></button></div></div>
+          <pre><code data-example="setup" data-language="bash"></code></pre>
+        </div>
+        <details class="payload-details">
+          <summary><span>Conductor lifecycle example</span><span class="details-plus" aria-hidden="true">+</span></summary>
+          <div class="doc-code">
+            <div class="doc-code-bar"><span>Illustrative API sketch</span><div><span>RUST</span><button data-copy-block aria-label="Copy lifecycle example"><svg class="icon small"><use href="#i-copy"/></svg><span>Copy</span></button></div></div>
+            <pre><code data-language="rust">// Check the repository for current imports and API signatures.
+#[tokio::main]
+async fn main() {
+    let conductor = PCHIConductor::new(1e-12);
+    conductor.start_transport("0.0.0.0:8888").await.unwrap();
+    conductor.load_rules("kraken-rules.only").await.unwrap();
+    tokio::signal::ctrl_c().await.unwrap();
+}</code></pre>
+          </div>
+        </details>
+        <div class="transport-row"><span>TRANSPORTS</span><code>UDP</code><code>TCP</code><code>WebSocket</code><code>OSC bridges</code></div>
+      </section>
+
+      <section class="doc-section" id="integration-patterns" data-title="Integration Patterns" data-group="Architecture">
+        <h2>Integration Patterns<a class="heading-anchor" href="#integration-patterns" aria-label="Link to Integration Patterns">#</a></h2>
+        <p>Start by identifying which role a tool plays. A creative system may send updates, receive validated state, or do both.</p>
+        <div class="pattern-grid">
+          <article><span class="pattern-direction">TOOL → CONDUCTOR</span><h3>Clients send.</h3><p>Clients translate their native state into PCHI messages and calculate invariant data before sending. Think Ableton Live, Resolume Arena, or tracking hardware.</p><span class="doc-chip">PROPOSE A CHANGE</span></article>
+          <article><span class="pattern-direction">CONDUCTOR → TOOL</span><h3>Hosts receive.</h3><p>Hosts listen to the Conductor’s validated broadcast and apply updates to their internal scene. Think Unreal Engine or a TouchDesigner scene network.</p><span class="doc-chip sage-chip">APPLY VERIFIED STATE</span></article>
+        </div>
+      </section>
+
+      <section class="doc-section" id="resolume" data-title="Resolume Bridge" data-group="Tool integrations">
+        <div class="doc-section-label">04 / YOUR CREATIVE STACK</div>
+        <div class="integration-heading"><div class="tile lilac">▦</div><div><span class="doc-tool-label">PYTHON / OSC</span><h2>Resolume Bridge<a class="heading-anchor" href="#resolume" aria-label="Link to Resolume Bridge">#</a></h2></div></div>
+        <p>The bridge listens for OSC messages from Resolume Arena, calculates invariant data, converts messages into the PCHI format, and forwards them to the Conductor.</p>
+        <div class="doc-code">
+          <div class="doc-code-bar"><span><i class="file-dot lilac-dot"></i> Bridge configuration</span><div><span>SHELL</span><button data-copy-block aria-label="Copy Resolume commands"><svg class="icon small"><use href="#i-copy"/></svg><span>Copy</span></button></div></div>
+          <pre><code data-language="bash">pip install python-osc numpy
+python resolume_pchi_bridge.py \
+    --resolume-port 7000 \
+    --pchi-host 127.0.0.1 \
+    --pchi-port 8888 \
+    --threshold 1e-12</code></pre>
+        </div>
+        <h3>From OSC to shared state</h3>
+        <p>An OSC address such as <code>/composition/layers/{layer_id}/video/opacity</code> maps to a PCHI <code>control_parameter</code> targeting that layer.</p>
+        <a class="doc-inline-link" href="https://github.com/vdmo/pchi/tree/main/tools" target="_blank" rel="noopener noreferrer">Browse bridge source <svg class="icon small"><use href="#i-up-right"/></svg></a>
+      </section>
+
+      <section class="doc-section" id="touchdesigner" data-title="TouchDesigner CHOP" data-group="Tool integrations">
+        <div class="integration-heading"><div class="tile blue">⌘</div><div><span class="doc-tool-label">PYTHON / TOUCHDESIGNER</span><h2>TouchDesigner CHOP<a class="heading-anchor" href="#touchdesigner" aria-label="Link to TouchDesigner CHOP">#</a></h2></div></div>
+        <p>A Python CHOP connects to the Conductor over UDP and creates channels from incoming scene objects, musical context, and invariant status.</p>
+        <div class="channel-list">
+          <div><strong>Equilibrium</strong><span><code>equilibrium</code><code>coherence_gap</code></span></div>
+          <div><strong>Musical context</strong><span><code>bpm</code><code>beat</code><code>kick</code><code>snare</code></span></div>
+          <div><strong>Object transforms</strong><span><code>{object_id}_x</code><code>_y</code><code>_z</code></span></div>
+        </div>
+        <p>Export the appropriate channels to a Geometry COMP’s transform parameters to drive your objects from the shared scene state.</p>
+        <a class="doc-inline-link" href="https://github.com/vdmo/pchi/tree/main/tools" target="_blank" rel="noopener noreferrer">Browse CHOP source <svg class="icon small"><use href="#i-up-right"/></svg></a>
+      </section>
+
+      <section class="doc-section" id="ableton" data-title="Ableton Max Device" data-group="Tool integrations">
+        <div class="integration-heading"><div class="tile sage">≋</div><div><span class="doc-tool-label">MAX FOR LIVE</span><h2>Ableton Max Device<a class="heading-anchor" href="#ableton" aria-label="Link to Ableton Max Device">#</a></h2></div></div>
+        <p>A Max for Live device monitors Ableton’s musical state, including BPM and clip changes. It calculates PIR invariant data from the musical state and emits a <code>musical_context</code> payload.</p>
+        <div class="connection-card"><div><span>HOST</span><code>127.0.0.1</code></div><div><span>PORT</span><code>8888</code></div><span class="connection-label"><i class="status-dot"></i> LOCAL CONFIGURATION</span></div>
+        <p>Pitch values can be mapped to Prouhet–Thue–Morse sequences for equilibrium calculations. Match the device’s transport and destination to your Conductor before sending.</p>
+        <a class="doc-inline-link" href="https://github.com/vdmo/pchi/tree/main/tools" target="_blank" rel="noopener noreferrer">Browse Max device files <svg class="icon small"><use href="#i-up-right"/></svg></a>
+      </section>
+
+      <section class="docs-ready" aria-labelledby="ready-title">
+        <svg class="brand-peach"><use href="#i-peach"/></svg>
+        <div><span class="eyebrow">FROM READING TO MAKING</span><h2 id="ready-title">Ready to find your harmony?</h2><p>Grab the schemas, connect your tools, and start building with PCHI.</p><a href="./index.html#projects" class="button button-cream">Projects &amp; Downloads <svg class="icon small"><use href="#i-arrow"/></svg></a></div>
+      </section>
+
+      <footer class="docs-footer">
+        <p>Part of the PIR / PrimeSwarm research monorepo.<br>Open Source Protocol for Live Creative Systems.</p>
+        <div><a href="https://github.com/vdmo/pchi/" target="_blank" rel="noopener noreferrer">Contribute on GitHub ↗</a><a href="#introduction">Back to top ↑</a></div>
+        <span>Less drift. More possibility.</span>
+      </footer>
+    </main>
+
+    <aside class="docs-right-rail" aria-label="Page navigation">
+      <span class="rail-label">ON THIS PAGE</span>
+      <nav id="page-outline" aria-label="On this page">
+        <a href="#introduction" class="active">Introduction</a><a href="#why-pchi">Why PCHI?</a>
+        <a href="#pir-invariants">PIR Invariants</a><a href="#only-lang">Only-Lang</a>
+        <a href="#message-schema">Message Schema</a><a href="#conductor">Conductor</a>
+        <a href="#integration-patterns">Integration Patterns</a><a href="#resolume">Resolume</a>
+        <a href="#touchdesigner">TouchDesigner</a><a href="#ableton">Ableton</a>
+      </nav>
+      <div class="rail-repo"><svg class="icon"><use href="#i-github"/></svg><strong>Better, together.</strong><p>The protocol is open.<br>So is the conversation.</p><a href="https://github.com/vdmo/pchi/issues" target="_blank" rel="noopener noreferrer">Suggest a change ↗</a></div>
+      <span class="rail-signature"><i class="status-dot"></i> A LITTLE MORE PEACHY.</span>
+    </aside>
+  </div>
+
+  <dialog class="docs-search-dialog" id="docs-search" aria-labelledby="search-title">
+    <div class="search-dialog-top"><h2 id="search-title">Find your way.</h2><button id="close-search" aria-label="Close search"><svg class="icon"><use href="#i-close"/></svg></button></div>
+    <div class="search-input-wrap"><svg class="icon"><use href="#i-search"/></svg><input id="docs-search-input" type="search" placeholder="Search concepts, tools, and examples…" autocomplete="off" aria-label="Search documentation" aria-controls="search-results"></div>
+    <p class="search-caption" id="search-caption" role="status">Explore the guide</p>
+    <div id="search-results" class="search-results"></div>
+    <div class="search-dialog-footer"><span><kbd>↑</kbd><kbd>↓</kbd> navigate <kbd>↵</kbd> open</span><span><kbd>esc</kbd> close</span></div>
+  </dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="./docs.js"></script>
+</body>
+</html>

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#edc0a9">
+  <meta name="description" content="PCHI 2.0 — mathematical governance for scene state. A shared, verified language for distributed creative systems.">
+  <title>PCHI 2.0 — Creative systems, in harmony.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;450;500;550;600;650;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <svg class="svg-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="i-peach" viewBox="0 0 40 40">
+      <path d="M21 11C15 5 5 11 5 21c0 9 9 15 15 15s15-7 15-16c0-10-9-14-14-9Z" fill="#ed9972" stroke="currentColor" stroke-width="1.6"/>
+      <path d="M20 11c4 5 4 15 0 22M21 10c0-4 3-7 5-8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      <path d="M20 10C13 11 8 6 9 3c6-1 10 2 11 7Z" fill="#869365" stroke="currentColor" stroke-width="1.4"/>
+    </symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>
+    <symbol id="i-up-right" viewBox="0 0 24 24"><path d="M6 18 18 6M6 6h12v12"/></symbol>
+    <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 4v12m-5-5 5 5 5-5M5 19v2h14v-2"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6l8-3Z"/><path d="m8 11 3 3 5-5"/></symbol>
+    <symbol id="i-sync" viewBox="0 0 24 24"><path d="M20 9a8 8 0 0 0-14-4L3 8m0-5v5h5M4 15a8 8 0 0 0 14 4l3-3m0 5v-5h-5"/></symbol>
+    <symbol id="i-invariant" viewBox="0 0 24 24"><path d="M5 4h14M5 20h14M6 4l12 16M18 4 6 20M3 12h18"/></symbol>
+    <symbol id="i-terminal" viewBox="0 0 24 24"><path d="m5 6 5 6-5 6m9 0h5"/></symbol>
+    <symbol id="i-code" viewBox="0 0 24 24"><path d="m7 6-5 6 5 6m10-12 5 6-5 6m-4-15-2 18"/></symbol>
+    <symbol id="i-wave" viewBox="0 0 24 24"><path d="M3 10v4m4-8v12m5-16v20m5-16v12m4-8v4"/></symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></symbol>
+    <symbol id="i-nodes" viewBox="0 0 24 24"><rect x="2" y="8" width="5" height="8" rx="1"/><rect x="17" y="2" width="5" height="6" rx="1"/><rect x="17" y="16" width="5" height="6" rx="1"/><path d="M7 12h5m0 0V5h5m-5 7v7h5"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></symbol>
+    <symbol id="i-github" viewBox="0 0 24 24"><path d="M9 19c-4 1-4-2-6-2m12 5v-4c0-1 .1-2-.7-2.7 3-.3 5.7-1.4 5.7-6.1a4.8 4.8 0 0 0-1.3-3.4c.1-.3.6-1.7-.1-3.4 0 0-1.1-.4-3.6 1.3a13 13 0 0 0-6 0C6.5 2 5.4 2.4 5.4 2.4c-.7 1.7-.2 3.1-.1 3.4A4.8 4.8 0 0 0 4 9.2c0 4.7 2.7 5.8 5.7 6.1C9 16 9 17 9 18v4"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+    <symbol id="i-pause" viewBox="0 0 24 24"><path d="M9 5v14M15 5v14"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="m8 5 11 7-11 7Z"/></symbol>
+  </svg>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <section class="hero" id="top">
+    <div class="hero-media" aria-hidden="true">
+      <div class="hero-art">
+        <div class="hero-orbit"></div>
+        <div class="hero-peach"><span class="hero-leaf"></span></div>
+      </div>
+    </div>
+
+    <header class="header container">
+      <a class="brand" href="#top" aria-label="PCHI home">
+        <svg class="brand-peach"><use href="#i-peach"/></svg>
+        <span>pchi<span class="brand-dot">.</span></span>
+        <span class="version">2.0</span>
+      </a>
+      <nav class="desktop-nav" aria-label="Main navigation">
+        <a href="#features">Features</a>
+        <a href="./docs.html">Documentation</a>
+        <a href="#projects">Projects &amp; Downloads</a>
+      </nav>
+      <a class="github-button" href="https://github.com/vdmo/pchi/" target="_blank" rel="noopener noreferrer" title="PCHI on GitHub">
+        <svg class="icon"><use href="#i-github"/></svg> GitHub
+        <svg class="icon small"><use href="#i-up-right"/></svg>
+      </a>
+      <button class="menu-button" id="menu-button" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-nav"><span></span><span></span></button>
+    </header>
+
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" hidden>
+      <a href="#features">Features</a>
+      <a href="./docs.html">Documentation</a>
+      <a href="#projects">Projects &amp; Downloads</a>
+      <a href="https://github.com/vdmo/pchi/" target="_blank" rel="noopener noreferrer">PCHI on GitHub ↗</a>
+    </nav>
+
+    <main class="hero-content container" id="main">
+      <div class="release-pill"><span class="status-dot"></span> A little peach. A big protocol. <span class="release-version">v2.0</span></div>
+      <h1>Mathematical<br>Governance<br><em>For Scene State.</em></h1>
+      <p class="hero-description">PCHI (Peachy) protocol v2.0 introduces PIR mathematical invariants enabling verified scene state management across distributed creative systems. <strong>Say goodbye to state drift.</strong></p>
+      <div class="hero-actions">
+        <button class="button button-dark" data-dialog="start">Get Started <svg class="icon"><use href="#i-arrow"/></svg></button>
+        <a class="button button-glass" href="./docs.html">Read the Docs <svg class="icon small"><use href="#i-arrow"/></svg></a>
+      </div>
+      <div class="hero-note"><svg class="icon small"><use href="#i-check"/></svg> Open source. Mathematically grounded. Creatively free.</div>
+    </main>
+
+    <div class="harmony-note">
+      <span class="harmony-icon"><svg class="icon"><use href="#i-wave"/></svg></span>
+      <div><span class="micro-label">A SHARED STATE OF MIND</span><strong>Everything, in harmony.</strong></div>
+      <span class="status-dot"></span>
+    </div>
+    <div class="hero-bottom container">
+      <a href="#features" class="scroll-cue"><span>↓</span> A LITTLE FURTHER, A LOT CLEARER</a>
+      <div class="hero-bottom-right"><span>LESS DRIFT. MORE POSSIBILITY.</span><button id="animation-toggle" class="animation-toggle" aria-label="Pause background animation"><svg class="icon small"><use href="#i-pause"/></svg></button></div>
+    </div>
+  </section>
+
+  <div class="integrations-strip">
+    <div class="container integrations-inner">
+      <p>One language.<br><strong>Your whole creative stack.</strong></p>
+      <div class="integration-logo resolume"><span class="logo-bars">▥</span> Resolume</div>
+      <div class="integration-logo touchdesigner"><svg class="icon"><use href="#i-nodes"/></svg> TouchDesigner</div>
+      <div class="integration-logo ableton"><svg class="icon"><use href="#i-wave"/></svg> Ableton</div>
+      <div class="integration-logo unreal"><span class="unreal-u">U</span> Unreal Engine</div>
+      <span class="and-beyond">+ beyond</span>
+    </div>
+  </div>
+
+  <section class="section container" id="features">
+    <div class="section-heading">
+      <div><div class="eyebrow"><span>01 /</span> BUILT ON CERTAINTY</div><h2>Why PCHI 2.0?</h2></div>
+      <p>Moving from convention-based to<br class="desktop-break"> mathematics-based scene management.</p>
+    </div>
+    <div class="features-grid">
+      <article class="feature-card">
+        <div class="card-top"><div class="tile peach"><svg class="icon"><use href="#i-invariant"/></svg></div><span class="card-number">01</span></div>
+        <h3>Mathematical Integrity</h3>
+        <p>Every message carries PIR invariants (Prouhet-Thue-Morse sequence) that mathematically prove the scene is in equilibrium. Disequilibrium is caught instantly before rendering.</p>
+        <div class="feature-foot"><span class="tiny-dot"></span> Verified, not assumed.</div>
+      </article>
+      <article class="feature-card">
+        <div class="card-top"><div class="tile sage"><svg class="icon"><use href="#i-shield"/></svg></div><span class="card-number">02</span></div>
+        <h3>Safe AI Integration</h3>
+        <p>AI agents can be safely deployed in live shows. Using the Only-Lang rule engine, mathematical boundaries are strictly enforced for all agent behaviors.</p>
+        <div class="feature-foot"><span class="tiny-dot"></span> Creative freedom. Clear boundaries.</div>
+      </article>
+      <article class="feature-card">
+        <div class="card-top"><div class="tile lilac"><svg class="icon"><use href="#i-sync"/></svg></div><span class="card-number">03</span></div>
+        <h3>Zero-Drift Sync</h3>
+        <p>The PCHI Conductor maintains a single source of truth for Resolume, TouchDesigner, Ableton, and Unreal. All tools receive the same verified state via UDP, WebSocket, or TCP.</p>
+        <div class="feature-foot"><span class="tiny-dot"></span> Many tools. One truth.</div>
+      </article>
+    </div>
+  </section>
+
+  <section class="how-section" id="how-it-works">
+    <div class="container how-grid">
+      <div class="how-copy">
+        <div class="eyebrow"><span>02 /</span> UNDER THE HOOD</div>
+        <h2>How it works<span class="accent">.</span></h2>
+        <p class="section-description">PCHI standardizes the message format for scene updates, control parameters, and musical contexts. Every message includes its mathematical signature.</p>
+        <ul class="principles">
+          <li><span class="check-box"><svg class="icon small"><use href="#i-check"/></svg></span><div><strong>Standardized Schema</strong><p>Common format for objects, parameters, artists, and music.</p></div></li>
+          <li><span class="check-box"><svg class="icon small"><use href="#i-check"/></svg></span><div><strong>PIR Invariants</strong><p>Equilibrium checks, coherence gaps, curvature signatures.</p></div></li>
+          <li><span class="check-box"><svg class="icon small"><use href="#i-check"/></svg></span><div><strong>Multiple Serializations</strong><p>JSON (human-readable) &amp; FlatBuffers (high-performance binary).</p></div></li>
+          <li><span class="check-box"><svg class="icon small"><use href="#i-check"/></svg></span><div><strong>Only-Lang Governance</strong><p>Rule definition DSL to keep generative AI output safe and harmonious.</p></div></li>
+        </ul>
+        <a class="text-link" href="./docs.html">Read full API Documentation <svg class="icon small"><use href="#i-arrow"/></svg></a>
+      </div>
+      <div class="code-window">
+        <div class="code-title"><div class="window-dots"><i></i><i></i><i></i></div><span>pchi-v2.0-schema.json</span><button class="copy-button" data-copy="payload" aria-label="Copy payload"><svg class="icon small"><use href="#i-copy"/></svg></button></div>
+        <div class="code-caption"><span>PAYLOAD EXAMPLE</span><span class="code-language">JSON</span></div>
+        <pre class="payload-pre"><code id="payload-code"></code></pre>
+        <div class="code-footer"><span><span class="status-dot"></span> Equilibrium by design</span><span>ε = 10⁻¹²</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section projects-section container" id="projects">
+    <div class="section-heading">
+      <div><div class="eyebrow"><span>03 /</span> THE ECOSYSTEM</div><h2>Projects &amp; Downloads</h2></div>
+      <p>Explore the tools built on top of<br class="desktop-break"> the PCHI 2.0 protocol ecosystem.</p>
+    </div>
+    <div class="projects-grid">
+      <article class="project-card conductor-card">
+        <div class="card-top"><div class="tile peach"><svg class="icon"><use href="#i-terminal"/></svg></div><span class="tech-tag">Rust</span></div>
+        <h3>PrimeSwarm Engine <span>(Conductor)</span></h3>
+        <p>The central state management server. Validates every message with PIR invariants, enforces Only-Lang rules, and broadcasts coherent state to all receivers. Includes a built-in web dashboard.</p>
+        <div class="terminal-line"><code><span>$</span> cargo run -p primeswarm-pchi</code><button class="copy-button" data-copy="command" aria-label="Copy conductor command"><svg class="icon small"><use href="#i-copy"/></svg></button></div>
+        <a class="project-link" href="https://github.com/vdmo/pchi/tree/main/primeswarm-pchi" target="_blank" rel="noopener noreferrer" title="View PrimeSwarm conductor source">View Source <svg class="icon small"><use href="#i-up-right"/></svg></a>
+      </article>
+      <article class="project-card">
+        <div class="card-top"><div class="tile neutral"><svg class="icon"><use href="#i-code"/></svg></div><div class="tags"><span class="tech-tag">JSON</span><span class="tech-tag">FlatBuffers</span></div></div>
+        <h3>PCHI Schema Defs</h3>
+        <p>The core protocol schemas, JSON validation configurations, and Rust implementation library with invariant math modules.</p>
+        <div class="schema-visual" aria-hidden="true"><span>{ }</span><div><b>One shared structure.</b><small>Human &amp; machine readable.</small></div></div>
+        <div class="project-link-stack"><a class="project-link" href="https://github.com/vdmo/pchi/tree/main/pchi-schema" target="_blank" rel="noopener noreferrer" title="Browse JSON schemas in pchi-schema">Browse JSON Schema <svg class="icon small"><use href="#i-up-right"/></svg></a><a class="project-link secondary" href="https://github.com/vdmo/pchi/tree/main/pchi-schema" target="_blank" rel="noopener noreferrer" title="Browse FlatBuffers schemas in pchi-schema">Browse FlatBuffers <svg class="icon small"><use href="#i-up-right"/></svg></a></div>
+      </article>
+      <article class="project-card">
+        <div class="card-top"><div class="tile lilac"><svg class="icon"><use href="#i-grid"/></svg></div><span class="tech-tag">Python / OSC</span></div>
+        <h3>Resolume PCHI Bridge</h3>
+        <p>Connects Resolume Arena to the PCHI Conductor via OSC. Converts standard OSC to PCHI with calculated PIR invariants (equilibrium, coherence gap) and handles real-time visual streaming constraints.</p>
+        <div class="terminal-line"><code>python resolume_pchi_bridge.py<br><span>--resolume-port 7000 --pchi-port 8888</span></code></div>
+        <a class="project-link" href="https://github.com/vdmo/pchi/tree/main/tools" target="_blank" rel="noopener noreferrer" title="Browse Resolume integration files in tools">Browse Bridge Source <svg class="icon small"><use href="#i-up-right"/></svg></a>
+      </article>
+      <article class="project-card wide-card">
+        <div class="card-top"><div class="tile sage"><svg class="icon"><use href="#i-wave"/></svg></div><span class="tech-tag">Max for Live</span></div>
+        <h3>Ableton PCHI Max</h3>
+        <p>A Max for Live device that monitors Ableton's musical state (BPM, beat, clips, kick/snare detection). Calculates equilibrium from the musical state and routes messages directly to the conductor.</p>
+        <div class="terminal-line network-config"><code><span>Host:</span> 127.0.0.1</code><code><span>Port:</span> 8888</code><span class="local-tag">LOCAL CONNECTION</span></div>
+        <a class="project-link" href="https://github.com/vdmo/pchi/tree/main/tools" target="_blank" rel="noopener noreferrer" title="Browse Ableton integration files in tools">Browse Max Device Files <svg class="icon small"><use href="#i-up-right"/></svg></a>
+      </article>
+      <article class="project-card wide-card">
+        <div class="card-top"><div class="tile blue"><svg class="icon"><use href="#i-nodes"/></svg></div><span class="tech-tag">Python / TD</span></div>
+        <h3>TouchDesigner CHOP</h3>
+        <p>A custom Python CHOP that connects to the PCHI Conductor via UDP. Receives PCHI messages and outputs scene state, musical context, and PIR equilibrium status directly as CHOP channels.</p>
+        <div class="terminal-line"><code>import json<br><span># Extracts objects &amp; beats as channels</span></code></div>
+        <a class="project-link" href="https://github.com/vdmo/pchi/tree/main/tools" target="_blank" rel="noopener noreferrer" title="Browse TouchDesigner integration files in tools">Browse CHOP Source <svg class="icon small"><use href="#i-up-right"/></svg></a>
+      </article>
+    </div>
+    <p class="download-note"><span>ⓘ</span> Schemas and integrations open in the PCHI repository. Select a file on GitHub to view or download its source.</p>
+  </section>
+
+  <section class="closing-section container">
+    <div class="closing-card">
+      <div class="closing-copy"><div class="eyebrow">CREATIVITY, WITHOUT THE CHAOS</div><h2>A shared state.<br>A world of possibilities.</h2><p>Your tools. Your ideas. All on the same wavelength.</p><button class="button button-cream" data-dialog="start">Build with PCHI <svg class="icon"><use href="#i-arrow"/></svg></button></div>
+      <div class="orbital-art" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="orbit orbit-three"></div><span class="orbit-node node-one">{ }</span><span class="orbit-node node-two">∿</span><span class="orbit-node node-three">⌘</span><div class="orbit-center"><svg><use href="#i-peach"/></svg></div><span class="orbit-caption">DIFFERENT TOOLS. SAME UNIVERSE.</span></div>
+    </div>
+  </section>
+
+  <footer class="footer container">
+    <div class="footer-main"><a class="brand" href="#top" aria-label="PCHI home"><svg class="brand-peach"><use href="#i-peach"/></svg><span>pchi<span class="brand-dot">.</span></span></a><p>Part of the PIR / PrimeSwarm research monorepo.<br>Open Source Protocol for Live Creative Systems.</p><a class="back-top" href="#top">Back to top <span>↑</span></a></div>
+    <div class="footer-bottom"><span>A little more harmony. A little more peachy.</span><div><a href="./docs.html">Documentation</a><a href="https://github.com/vdmo/pchi/" target="_blank" rel="noopener noreferrer">GitHub ↗</a><span class="footer-version"><span class="status-dot"></span> Protocol v2.0</span></div></div>
+  </footer>
+
+  <dialog id="site-dialog" aria-labelledby="dialog-title">
+    <div class="dialog-header"><a class="brand" href="#top" aria-label="PCHI home"><svg class="brand-peach"><use href="#i-peach"/></svg><span>pchi.</span></a><button class="dialog-close" aria-label="Close dialog"><svg class="icon"><use href="#i-close"/></svg></button></div>
+    <div id="dialog-content"></div>
+  </dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
