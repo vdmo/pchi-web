@@ -150,16 +150,21 @@
       <section class="doc-section" id="only-lang" data-title="Only-Lang Governance" data-group="Core concepts">
         <span class="doc-chip sage-chip">CREATIVE FREEDOM, CLEAR BOUNDARIES</span>
         <h2>Only-Lang Governance<a class="heading-anchor" href="#only-lang" aria-label="Link to Only-Lang Governance">#</a></h2>
-        <p>Generative agents can introduce unexpected changes into a live environment. Only-Lang rules define explicit boundaries for those behaviors, allowing the Conductor to clamp or reject a proposed update before it reaches receivers.</p>
+        <p>Generative agents can introduce unexpected changes into a live environment. Only-Lang rules — real <code>.only-pchi</code> files, parsed and evaluated by <code>primeswarm-pchi/src/only_lang.rs</code>, not a description — define explicit boundaries for those behaviors, and the Conductor evaluates them against every incoming message before it reaches receivers.</p>
         <div class="doc-code">
-          <div class="doc-code-bar"><span><i class="file-dot sage-dot"></i> A little less wobble.</span><div><span>RULE EXAMPLE</span><button data-copy-block aria-label="Copy governance rule"><svg class="icon small"><use href="#i-copy"/></svg><span>Copy</span></button></div></div>
-          <pre><code data-language="lua">if kraken_tentacle.wobbliness > 0.8
-then
-    kraken_tentacle.wobbliness = 0.8
+          <div class="doc-code-bar"><span><i class="file-dot sage-dot"></i> A little less curl.</span><div><span>RULE EXAMPLE — kraken-tentacle.only-pchi</span><button data-copy-block aria-label="Copy governance rule"><svg class="icon small"><use href="#i-copy"/></svg><span>Copy</span></button></div></div>
+          <pre><code data-language="lua">if tentacle_system.total_curl > 4.0 then
+    deny("Tentacle curl exceeds harmonic threshold")
 end</code></pre>
         </div>
-        <p>Here, the maximum permitted wobbliness is <code>0.8</code>. Suggestions within that boundary can pass; values outside it are constrained by the rule.</p>
-        <p class="doc-small">Software governance is one layer of protection—not a substitute for show-specific safety limits, hardware interlocks, or operator oversight.</p>
+        <p>When this fires, the Conductor rejects the update — and signs (Ed25519) and hash-chains the decision into an append-only governance log, in the same pattern <a href="https://github.com/vdmo/only-dgv-verifier" target="_blank" rel="noopener noreferrer">DGV</a> uses for tool-call authorization. Export it and check it independently, no trust in the running Conductor required:</p>
+        <div class="doc-code">
+          <div class="doc-code-bar"><span><i class="file-dot sage-dot"></i> Independent verification</span><div><span>SHELL</span><button data-copy-block aria-label="Copy verification commands"><svg class="icon small"><use href="#i-copy"/></svg><span>Copy</span></button></div></div>
+          <pre><code data-language="bash">curl http://127.0.0.1:3000/governance/export > export.json
+python3 scripts/verify_governance_chain.py export.json
+# ✅ All receipts verified — chain contiguous, hashes correct, signatures valid.</code></pre>
+        </div>
+        <p class="doc-small">The rule grammar is a documented, tested subset (<code>if</code>/<code>then</code>/<code>end</code>, <code>and</code>/<code>or</code>, <code>escalate</code>/<code>deny</code>/<code>evolve</code>) — not the full grammar shown in some example files. A signed receipt proves the Conductor enforced the rule as written; it doesn't audit whether the rule's own threshold is the right one for your show. Software governance is one layer of protection — not a substitute for show-specific safety limits, hardware interlocks, or operator oversight. See <a href="https://github.com/vdmo/pchi/blob/main/docs/LIMITATIONS.md" target="_blank" rel="noopener noreferrer">LIMITATIONS.md</a> for the full list.</p>
       </section>
 
       <section class="doc-section" id="message-schema" data-title="Message Schema" data-group="Core concepts">

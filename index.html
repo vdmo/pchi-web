@@ -57,6 +57,7 @@
         <a href="#features">Features</a>
         <a href="./docs.html">Documentation</a>
         <a href="#projects">Projects &amp; Downloads</a>
+        <a href="#who-its-for">Who it's for</a>
       </nav>
       <a class="github-button" href="https://github.com/vdmo/pchi/" target="_blank" rel="noopener noreferrer" title="PCHI on GitHub">
         <svg class="icon"><use href="#i-github"/></svg> GitHub
@@ -69,6 +70,7 @@
       <a href="#features">Features</a>
       <a href="./docs.html">Documentation</a>
       <a href="#projects">Projects &amp; Downloads</a>
+      <a href="#who-its-for">Who it's for</a>
       <a href="https://github.com/vdmo/pchi/" target="_blank" rel="noopener noreferrer">PCHI on GitHub ↗</a>
     </nav>
 
@@ -120,8 +122,8 @@
       <article class="feature-card">
         <div class="card-top"><div class="tile sage"><svg class="icon"><use href="#i-shield"/></svg></div><span class="card-number">02</span></div>
         <h3>Safe AI Integration</h3>
-        <p>AI agents can be safely deployed in live shows. Using the Only-Lang rule engine, mathematical boundaries are strictly enforced for all agent behaviors.</p>
-        <div class="feature-foot"><span class="tiny-dot"></span> Creative freedom. Clear boundaries.</div>
+        <p>AI agents run inside Only-Lang boundaries the conductor enforces on every incoming message. Every rule that fires is signed and hash-chained — export the log and verify it independently, with no need to trust our dashboard or our word for what happened.</p>
+        <div class="feature-foot"><span class="tiny-dot"></span> Not just enforced. Verifiable.</div>
       </article>
       <article class="feature-card">
         <div class="card-top"><div class="tile lilac"><svg class="icon"><use href="#i-sync"/></svg></div><span class="card-number">03</span></div>
@@ -198,6 +200,33 @@
       </article>
     </div>
     <p class="download-note"><span>ⓘ</span> Schemas and integrations open in the PCHI repository. Select a file on GitHub to view or download its source.</p>
+  </section>
+
+  <section class="section container" id="who-its-for">
+    <div class="section-heading">
+      <div><div class="eyebrow"><span>04 /</span> WHO THIS IS FOR</div><h2>Three ways to use it.</h2></div>
+      <p>Same protocol, same signed log —<br class="desktop-break"> different reason to care.</p>
+    </div>
+    <div class="features-grid">
+      <article class="feature-card">
+        <div class="card-top"><div class="tile peach"><svg class="icon"><use href="#i-terminal"/></svg></div><span class="card-number">01</span></div>
+        <h3>Production companies &amp; venues</h3>
+        <p>Run the conductor yourself, free, self-hosted. Write Only-Lang rules for your own safety limits — strobe intensity, animation speed, whatever your show needs — and get a signed record of every time one fired, without paying anyone for it.</p>
+        <div class="feature-foot"><span class="tiny-dot"></span> Direct. Self-hosted. Free.</div>
+      </article>
+      <article class="feature-card">
+        <div class="card-top"><div class="tile lilac"><svg class="icon"><use href="#i-nodes"/></svg></div><span class="card-number">02</span></div>
+        <h3>Show-control tool vendors</h3>
+        <p>The Resolume, TouchDesigner, and Ableton bridges are a small, self-contained surface — OSC/CHOP/Max in, PCHI out. Ship one natively rather than making every customer run a separate bridge process.</p>
+        <div class="feature-foot"><span class="tiny-dot"></span> Embed it. Low integration cost.</div>
+      </article>
+      <article class="feature-card">
+        <div class="card-top"><div class="tile blue"><svg class="icon"><use href="#i-shield"/></svg></div><span class="card-number">03</span></div>
+        <h3>Insurers &amp; safety auditors</h3>
+        <p>An insurer underwriting an AI-driven show doesn't want the venue's word that safety limits held — they want to check it themselves. <code>GET /governance/export</code> plus the offline verifier script re-derives every signed decision independently, no trust in the venue's dashboard required.</p>
+        <div class="feature-foot"><span class="tiny-dot"></span> Verify it yourself. We built the tool for it.</div>
+      </article>
+    </div>
   </section>
 
   <section class="closing-section container">
