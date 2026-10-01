@@ -103,6 +103,8 @@
       <div class="integration-logo touchdesigner"><svg class="icon"><use href="#i-nodes"/></svg> TouchDesigner</div>
       <div class="integration-logo ableton"><svg class="icon"><use href="#i-wave"/></svg> Ableton</div>
       <div class="integration-logo unreal"><span class="unreal-u">U</span> Unreal Engine</div>
+      <div class="integration-logo tixl"><svg class="icon"><use href="#i-grid"/></svg> TiXL</div>
+      <div class="integration-logo cables"><svg class="icon"><use href="#i-nodes"/></svg> cables.gl</div>
       <span class="and-beyond">+ beyond</span>
     </div>
   </div>
@@ -128,7 +130,7 @@
       <article class="feature-card">
         <div class="card-top"><div class="tile lilac"><svg class="icon"><use href="#i-sync"/></svg></div><span class="card-number">03</span></div>
         <h3>Zero-Drift Sync</h3>
-        <p>The PCHI Conductor maintains a single source of truth for Resolume, TouchDesigner, Ableton, and Unreal. All tools receive the same verified state via UDP, WebSocket, or TCP.</p>
+        <p>The PCHI Conductor maintains a single source of truth for Resolume, TouchDesigner, Ableton, Unreal, TiXL, and cables.gl. All tools receive the same verified state via UDP, WebSocket, TCP, OSC, or HTTP.</p>
         <div class="feature-foot"><span class="tiny-dot"></span> Many tools. One truth.</div>
       </article>
     </div>
@@ -198,6 +200,27 @@
         <div class="terminal-line"><code>import json<br><span># Extracts objects &amp; beats as channels</span></code></div>
         <a class="project-link" href="https://github.com/vdmo/pchi/tree/main/tools" target="_blank" rel="noopener noreferrer" title="Browse TouchDesigner integration files in tools">Browse CHOP Source <svg class="icon small"><use href="#i-up-right"/></svg></a>
       </article>
+      <article class="project-card">
+        <div class="card-top"><div class="tile blue"><svg class="icon"><use href="#i-grid"/></svg></div><span class="tech-tag">Python / OSC</span></div>
+        <h3>TiXL PCHI Bridge</h3>
+        <p>Connects <a href="https://tixl.app" target="_blank" rel="noopener noreferrer">TiXL</a>'s real-time motion graphics engine to the PCHI Conductor over OSC — a fixed <code>/pchi/control</code> address in, live governance verdicts back out as <code>/pchi/governance/gate_state</code>.</p>
+        <div class="terminal-line"><code>python tixl_pchi_bridge.py<br><span>--osc-in-port 9001 --pchi-port 8888</span></code></div>
+        <a class="project-link" href="https://github.com/vdmo/pchi/tree/main/tools/tixl-pchi-bridge" target="_blank" rel="noopener noreferrer" title="Browse TiXL OSC bridge source">Browse Bridge Source <svg class="icon small"><use href="#i-up-right"/></svg></a>
+      </article>
+      <article class="project-card">
+        <div class="card-top"><div class="tile lilac"><svg class="icon"><use href="#i-code"/></svg></div><span class="tech-tag">C# / .NET</span></div>
+        <h3>TiXL Native Operators</h3>
+        <p>Two real TiXL operators — one sends control parameters, one receives governance verdicts — compiled clean against TiXL's actual <code>Core.dll</code>, no bridge process required. Compiled; not yet run inside a live TiXL editor session.</p>
+        <div class="terminal-line"><code><span>$</span> dotnet build Pchi.csproj</code></div>
+        <a class="project-link" href="https://github.com/vdmo/pchi/tree/main/tools/tixl-native-operators" target="_blank" rel="noopener noreferrer" title="Browse TiXL native operator source">Browse Operator Source <svg class="icon small"><use href="#i-up-right"/></svg></a>
+      </article>
+      <article class="project-card">
+        <div class="card-top"><div class="tile sage"><svg class="icon"><use href="#i-sync"/></svg></div><span class="tech-tag">Python / HTTP + WS</span></div>
+        <h3>cables.gl PCHI Relay</h3>
+        <p>Bridges <a href="https://cables.gl" target="_blank" rel="noopener noreferrer">cables.gl</a>'s browser-sandboxed patches to the Conductor: a CORS-handled HTTP POST carries control updates in, a plain WebSocket — the same shape cables' own WebSocket op already speaks — carries governance verdicts out.</p>
+        <div class="terminal-line"><code>python cables_pchi_relay.py<br><span>--http-port 9100 --ws-port 9101</span></code></div>
+        <a class="project-link" href="https://github.com/vdmo/pchi/tree/main/tools/cables-pchi-relay" target="_blank" rel="noopener noreferrer" title="Browse cables.gl relay source">Browse Relay Source <svg class="icon small"><use href="#i-up-right"/></svg></a>
+      </article>
     </div>
     <p class="download-note"><span>ⓘ</span> Schemas and integrations open in the PCHI repository. Select a file on GitHub to view or download its source.</p>
   </section>
@@ -217,7 +240,7 @@
       <article class="feature-card">
         <div class="card-top"><div class="tile lilac"><svg class="icon"><use href="#i-nodes"/></svg></div><span class="card-number">02</span></div>
         <h3>Show-control tool vendors</h3>
-        <p>The Resolume, TouchDesigner, and Ableton bridges are a small, self-contained surface — OSC/CHOP/Max in, PCHI out. Ship one natively rather than making every customer run a separate bridge process.</p>
+        <p>The Resolume, TouchDesigner, Ableton, TiXL, and cables.gl bridges are a small, self-contained surface — OSC/CHOP/Max/HTTP in, PCHI out. Ship one natively, the way TiXL's C# operators do against real compiled source, rather than making every customer run a separate bridge process.</p>
         <div class="feature-foot"><span class="tiny-dot"></span> Embed it. Low integration cost.</div>
       </article>
       <article class="feature-card">

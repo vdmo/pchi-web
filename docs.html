@@ -68,6 +68,8 @@
           <a href="#resolume" class="sidebar-link"><i class="nav-dot lilac-dot"></i>Resolume Bridge</a>
           <a href="#touchdesigner" class="sidebar-link"><i class="nav-dot blue-dot"></i>TouchDesigner CHOP</a>
           <a href="#ableton" class="sidebar-link"><i class="nav-dot sage-dot"></i>Ableton Max Device</a>
+          <a href="#tixl" class="sidebar-link"><i class="nav-dot blue-dot"></i>TiXL Bridge &amp; Operators</a>
+          <a href="#cables" class="sidebar-link"><i class="nav-dot sage-dot"></i>cables.gl Relay</a>
         </div>
       </nav>
       <div class="sidebar-bottom">
@@ -85,6 +87,7 @@
         <option value="message-schema">Message Schema</option><option value="conductor">PCHI Conductor</option>
         <option value="integration-patterns">Integration Patterns</option><option value="resolume">Resolume Bridge</option>
         <option value="touchdesigner">TouchDesigner CHOP</option><option value="ableton">Ableton Max Device</option>
+        <option value="tixl">TiXL Bridge &amp; Operators</option><option value="cables">cables.gl Relay</option>
       </select>
     </div>
 
@@ -268,6 +271,61 @@ python resolume_pchi_bridge.py \
         <a class="doc-inline-link" href="https://github.com/vdmo/pchi/tree/main/tools" target="_blank" rel="noopener noreferrer">Browse Max device files <svg class="icon small"><use href="#i-up-right"/></svg></a>
       </section>
 
+      <section class="doc-section" id="tixl" data-title="TiXL Bridge &amp; Operators" data-group="Tool integrations">
+        <div class="integration-heading"><div class="tile blue">◧</div><div><span class="doc-tool-label">PYTHON / OSC &amp; C# / .NET</span><h2>TiXL Bridge &amp; Operators<a class="heading-anchor" href="#tixl" aria-label="Link to TiXL Bridge and Operators">#</a></h2></div></div>
+        <p><a href="https://tixl.app" target="_blank" rel="noopener noreferrer">TiXL</a> is an open-source, real-time motion graphics tool (C#/.NET, DirectX 11). There's no separate plugin DLL system — TiXL <em>is</em> the SDK, and operators are <code>.cs</code> source files the running editor compiles and hot-reloads. Two integration paths exist, trading off setup simplicity against directness.</p>
+        <h3>Path A — OSC bridge</h3>
+        <p>A Python process sits between TiXL's own <code>OscOutput</code>/<code>OscInput</code> operators and the Conductor. TiXL's OSC operators are built on <code>Rug.Osc</code>, a real spec-compliant library — confirmed directly from TiXL's source (<code>Operators/Io/Symbols/lib/io/osc/{OscOutput,OscInput}.cs</code>), so no wire-format guesswork was needed on the TiXL side.</p>
+        <div class="doc-code">
+          <div class="doc-code-bar"><span><i class="file-dot blue-dot"></i> Bridge usage</span><div><span>SHELL</span><button data-copy-block aria-label="Copy TiXL bridge commands"><svg class="icon small"><use href="#i-copy"/></svg><span>Copy</span></button></div></div>
+          <pre><code data-language="bash">pip install python-osc websocket-client
+python tixl_pchi_bridge.py \
+    --osc-in-port 9001 \
+    --osc-out-port 9002 \
+    --pchi-host 127.0.0.1 \
+    --pchi-port 8888 \
+    --pchi-ws-port 8889</code></pre>
+        </div>
+        <p>In TiXL, an <code>OscOutput</code> sends to the bridge's <code>--osc-in-port</code> at the fixed address <code>/pchi/control</code>, with a float value and a string payload of <code>"&lt;target_id&gt;.&lt;parameter&gt;"</code>. An <code>OscInput</code> listening on <code>--osc-out-port</code> receives <code>/pchi/governance/gate_state</code> as a float — <code>1.0</code>/<code>0.5</code>/<code>0.0</code> for ALLOW/ESCALATE/DENY, since <code>OscInput</code>'s outputs are float-only (confirmed from source, no string channel).</p>
+        <h3>Path B — native operators</h3>
+        <p><code>PCHISendControlParameter</code> and <code>PCHIGovernanceReceive</code> are real TiXL operators — <code>Instance&lt;T&gt;</code> subclasses carrying <code>[Guid]</code>/<code>[Input]</code>/<code>[Output]</code> attributes, the same shape as any built-in TiXL op. <code>PCHISendControlParameter</code> writes raw JSON directly over UDP; <code>PCHIGovernanceReceive</code> owns a reconnecting <code>ClientWebSocket</code> and exposes <code>GateState</code>/<code>ReceiptId</code>/<code>Tool</code>/<code>IsConnected</code> as live outputs — no bridge process in between.</p>
+        <div class="doc-code">
+          <div class="doc-code-bar"><span><i class="file-dot blue-dot"></i> Build verification</span><div><span>SHELL</span><button data-copy-block aria-label="Copy TiXL operator build command"><svg class="icon small"><use href="#i-copy"/></svg><span>Copy</span></button></div></div>
+          <pre><code data-language="bash">cd tixl-native-operators/verify-build
+dotnet build Pchi.csproj   # references TiXL's own Core.csproj</code></pre>
+        </div>
+        <aside class="docs-callout"><span class="callout-symbol">i</span><div><strong>Compiled, not yet run live.</strong><p>Both operators compile cleanly — 0 warnings, 0 errors, including a clean rebuild — against TiXL's real <code>Core.dll</code>. They have not been run inside a live TiXL editor session; that needs a Windows GUI environment this build wasn't verified against. If you load them and something doesn't behave as documented, please open an issue.</p></div></aside>
+        <p class="doc-small">Governance telemetry on both paths requires <a href="https://github.com/vdmo/pchi/pull/5" target="_blank" rel="noopener noreferrer">vdmo/pchi#5</a> (the WebSocket accept-loop fix) and benefits from <a href="https://github.com/vdmo/pchi/pull/9" target="_blank" rel="noopener noreferrer">#9</a> (heartbeat exclusion, so a lingering violation doesn't sign a fresh receipt on every heartbeat). Control updates work regardless.</p>
+        <div class="doc-link-row">
+          <a class="doc-inline-link" href="https://github.com/vdmo/pchi/tree/main/tools/tixl-pchi-bridge" target="_blank" rel="noopener noreferrer">Browse the OSC bridge source <svg class="icon small"><use href="#i-up-right"/></svg></a>
+          <a class="doc-inline-link" href="https://github.com/vdmo/pchi/tree/main/tools/tixl-native-operators" target="_blank" rel="noopener noreferrer">Browse the native operator source <svg class="icon small"><use href="#i-up-right"/></svg></a>
+        </div>
+      </section>
+
+      <section class="doc-section" id="cables" data-title="cables.gl Relay" data-group="Tool integrations">
+        <div class="integration-heading"><div class="tile sage">⇄</div><div><span class="doc-tool-label">PYTHON / HTTP + WEBSOCKET</span><h2>cables.gl Relay<a class="heading-anchor" href="#cables" aria-label="Link to cables.gl Relay">#</a></h2></div></div>
+        <p><a href="https://cables.gl" target="_blank" rel="noopener noreferrer">cables.gl</a> is an open-source, browser-based node/patch tool for interactive content. Patches run entirely inside a browser sandbox, which cannot open a raw UDP socket — the transport the Conductor's control-update path requires. A relay translates between the two: browser-safe HTTP/WebSocket on the cables side, raw JSON-over-UDP and a WebSocket client on the Conductor side.</p>
+        <div class="doc-code">
+          <div class="doc-code-bar"><span><i class="file-dot sage-dot"></i> Relay usage</span><div><span>SHELL</span><button data-copy-block aria-label="Copy cables relay commands"><svg class="icon small"><use href="#i-copy"/></svg><span>Copy</span></button></div></div>
+          <pre><code data-language="bash">pip install websockets
+python cables_pchi_relay.py \
+    --http-port 9100 \
+    --ws-port 9101 \
+    --pchi-host 127.0.0.1 \
+    --pchi-port 8888 \
+    --pchi-ws-port 8889 \
+    --cors-origin "*"</code></pre>
+        </div>
+        <h3>Wiring it into a patch</h3>
+        <p>Outbound, use an HTTP request op to <code>POST</code> to <code>http://&lt;relay&gt;:9100/pchi/control</code> with a JSON body (<code>target_id</code>, <code>parameter</code>, <code>value</code>). Inbound, point cables' own WebSocket op at <code>ws://&lt;relay&gt;:9101</code> — the governance-telemetry leg needed zero new protocol work, since cables already ships a working WebSocket client op, confirmed against a real official example (<a href="https://github.com/cables-gl/websocket-example" target="_blank" rel="noopener noreferrer">cables-gl/websocket-example</a>). Each message carries both a flattened <code>gate_state</code> string and a numeric <code>gate_state_code</code> (1.0/0.5/0.0), since cables' JSON handling isn't constrained to numbers the way TiXL's float-only OSC outputs are.</p>
+        <p class="doc-small">A cables patch is served from a different origin than the relay, so every control POST is cross-origin — the browser sends a CORS preflight (<code>OPTIONS</code>) first. Both the preflight and the actual request are handled; tighten <code>--cors-origin</code> from the development default (<code>*</code>) for anything reachable beyond your own machine.</p>
+        <aside class="docs-callout"><span class="callout-symbol">i</span><div><strong>Real op confirmed, full round-trip not yet closed.</strong><p>Verified live against the actual cables.gl editor through browser automation, not just assumption: the real op class (<code>Ops.Net.WebSocket.WebSocket_v2</code>) was located in a currently-maintained official example patch, and its URL field was genuinely read and edited through cables' own UI — including locating the editor canvas, which renders inside a separate-origin <code>sandbox.cables.gl</code> iframe. A full live round-trip — cables' public site actually exchanging messages with a relay on <code>localhost</code> — was blocked by a real, current browser security boundary: Chrome's Local Network Access policy refuses a public-origin page a connection to a loopback address without an interactive permission grant that headless automation can't satisfy. An interactive user would see a one-time Chrome prompt; a standalone or Electron build of cables — not loaded as a remote HTTPS page — would likely avoid this policy entirely, since it isn't the scenario the policy targets.</p></div></aside>
+        <div class="doc-link-row">
+          <a class="doc-inline-link" href="https://github.com/vdmo/pchi/tree/main/tools/cables-pchi-relay" target="_blank" rel="noopener noreferrer">Browse the relay source <svg class="icon small"><use href="#i-up-right"/></svg></a>
+          <a class="doc-inline-link" href="https://cables.gl/op/Ops.Net.WebSocket.WebSocket_v2" target="_blank" rel="noopener noreferrer">cables.gl's WebSocket_v2 op docs <svg class="icon small"><use href="#i-up-right"/></svg></a>
+        </div>
+      </section>
+
       <section class="docs-ready" aria-labelledby="ready-title">
         <svg class="brand-peach"><use href="#i-peach"/></svg>
         <div><span class="eyebrow">FROM READING TO MAKING</span><h2 id="ready-title">Ready to find your harmony?</h2><p>Grab the schemas, connect your tools, and start building with PCHI.</p><a href="./index.html#projects" class="button button-cream">Projects &amp; Downloads <svg class="icon small"><use href="#i-arrow"/></svg></a></div>
@@ -288,6 +346,7 @@ python resolume_pchi_bridge.py \
         <a href="#message-schema">Message Schema</a><a href="#conductor">Conductor</a>
         <a href="#integration-patterns">Integration Patterns</a><a href="#resolume">Resolume</a>
         <a href="#touchdesigner">TouchDesigner</a><a href="#ableton">Ableton</a>
+        <a href="#tixl">TiXL</a><a href="#cables">cables.gl</a>
       </nav>
       <div class="rail-repo"><svg class="icon"><use href="#i-github"/></svg><strong>Better, together.</strong><p>The protocol is open.<br>So is the conversation.</p><a href="https://github.com/vdmo/pchi/issues" target="_blank" rel="noopener noreferrer">Suggest a change ↗</a></div>
       <span class="rail-signature"><i class="status-dot"></i> A LITTLE MORE PEACHY.</span>

@@ -116,6 +116,7 @@
 .payload-details .doc-code{border-radius:0;margin:0;border-width:1px 0 0}
 .doc-inline-link{display:inline-flex;align-items:center;gap:12px;font-size:11px;color:#936640;border-bottom:1px solid #b0926840;padding-bottom:6px;margin-top:10px}
 .doc-inline-link:hover{color:var(--ink)}
+.doc-link-row{display:flex;flex-wrap:wrap;gap:8px 28px}
 .conductor-flow{list-style:none;padding:0;margin:26px 0;display:grid;grid-template-columns:repeat(4,1fr);border:1px solid #dddccc;border-radius:9px;background:#eeefe5}
 .conductor-flow li{position:relative;display:flex;flex-direction:column;gap:8px;padding:19px 15px;border-right:1px solid #dddccc}
 .conductor-flow li:last-child{border:0}
